@@ -112,7 +112,7 @@ requirejs(["Quaternion", "Input", "InputGroup"], function (Quaternion, Input, In
             selector: "#seriesLen",
             init: 1000,
             min: 1,
-            max: 2000,
+            max: 20000,
             slider: false
           });
 
