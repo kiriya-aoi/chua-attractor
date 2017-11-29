@@ -82,9 +82,9 @@ requirejs(["Quaternion", "Input", "InputGroup"], function (Quaternion, Input, In
       var zoomInput = new Input(
             {
               selector: "#zoom",
-              init: 1,
+              init: .1,
               min: 0.01,
-              max: 10,
+              max: 1,
               slider: true,
               step: 0.01
             });
