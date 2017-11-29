@@ -1,41 +1,59 @@
 requirejs(["Quaternion", "Input", "InputGroup"], function (Quaternion, Input, InputGroup) {
   $(function () {
-      // integrates the lorentz equations and displays the result in a nice
+      // integrates the Chua equations and displays the result in a nice
       // flot graph with sliders.
       //
       // graphing: http://www.flotcharts.org/
       // sliders: http://jqueryui.com/
-      // the maths: http://en.wikipedia.org/wiki/Lorenz_system
+      // the maths: https://en.wikipedia.org/wiki/Chua's_circuit
 
       // set up input boxes.
       var parmInputs = new InputGroup(
         {
-          sigma:
+          alpha:
             {
-              selector: "#sigma",    
-              init: 10,
+              selector: "#alpha",    
+              init: 15.6,
               min: 0,
               max: 30,
-              slider: true,
-              step: 0.1
-            },
-          rho:
-            {
-              selector: "#rho",
-              init: 28,
-              min: 0,
-              max: 100,
               slider: true,
               step: 0.1
             },
           beta:
             {
               selector: "#beta",
-              init: 2.66,
+              init: 1,
               min: 0,
-              max: 30,
+              max: 5,
               slider: true,
               step: 0.1
+            },
+          epsilon:
+            {
+              selector: "#epsilon",
+              init: 28,
+              min: 0,
+              max: 100,
+              slider: true,
+              step: 0.1
+            },
+          m0:
+            {
+              selector: "#m0",
+              init: -1.143,
+              min: -2,
+              max: 0,
+              slider: true,
+              step: 0.001
+            },
+          m1:
+            {
+              selector: "#m1",
+              init: -0.714,
+              min: -2,
+              max: 0,
+              slider: true,
+              step: 0.001
             }
         });
 
@@ -184,9 +202,9 @@ requirejs(["Quaternion", "Input", "InputGroup"], function (Quaternion, Input, In
         }
         var next = [
           // integrate the lorenz equations.
-          prev[0] + dt * (parmVals.sigma * (prev[1] - prev[0])),
-          prev[1] + dt * (prev[0] * (parmVals.rho - prev[2]) - prev[1]),
-          prev[2] + dt * (prev[0] * prev[1] - parmVals.beta * prev[2])
+          prev[0] + dt * (parmVals.alpha * (prev[1] - prev[0] - (parmVals.m1*prev[0] - 0.5 * (parmVals.m0 - parmVals.m1) * (Math.abs(prev[0] + 1) - Math.abs(prev[0] - 1))))),
+          prev[1] + dt * (parmVals.beta * (prev[0] - prev[1] + prev[2]))
+          prev[2] + dt * (0 -parmVals.epsilon* prev[1])
           ];
         sData.push(next);
         data[series] = sData;
