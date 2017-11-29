@@ -86,7 +86,7 @@ requirejs(["Quaternion", "Input", "InputGroup"], function (Quaternion, Input, In
               min: 0.01,
               max: 10,
               slider: true,
-              step: 0.1
+              step: 0.01
             });
 
       var updateInput = new Input(
