@@ -119,9 +119,9 @@ requirejs(["Quaternion", "Input", "InputGroup"], function (Quaternion, Input, In
       // the array of raw data for all the plot series
       var data = [[]];
       // maxiumum number of points in the series.
-      var totalPoints = 1000;
+      var totalPoints = 10000;
       // length of the axes on the graph.
-      var axisLength = 3;
+      var axisLength = 1;
       // true when running.
       var running = true;
       // true during mouse drag.
