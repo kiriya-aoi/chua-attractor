@@ -22,15 +22,6 @@ requirejs(["Quaternion", "Input", "InputGroup"], function (Quaternion, Input, In
           beta:
             {
               selector: "#beta",
-              init: 1,
-              min: 0,
-              max: 5,
-              slider: true,
-              step: 0.1
-            },
-          epsilon:
-            {
-              selector: "#epsilon",
               init: 28,
               min: 0,
               max: 100,
@@ -203,8 +194,8 @@ requirejs(["Quaternion", "Input", "InputGroup"], function (Quaternion, Input, In
         var next = [
           // integrate the lorenz equations.
           prev[0] + dt * (parmVals.alpha * (prev[1] - prev[0] - (parmVals.m1*prev[0] + 0.5 * (parmVals.m0 - parmVals.m1) * (Math.abs(prev[0] + 1) - Math.abs(prev[0] - 1))))),
-          prev[1] + dt * (parmVals.beta * (prev[0] - prev[1] + prev[2])),
-          prev[2] - dt * (parmVals.epsilon* prev[1])
+          prev[1] + dt * (prev[0] - prev[1] + prev[2]),
+          prev[2] - dt * (parmVals.beta * prev[1])
           ];
         sData.push(next);
         data[series] = sData;
