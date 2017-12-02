@@ -110,7 +110,7 @@ requirejs(["Quaternion", "Input", "InputGroup"], function (Quaternion, Input, In
       var seriesLenInput = new Input(
           {
             selector: "#seriesLen",
-            init: 1000,
+            init: 10000,
             min: 1,
             max: 20000,
             slider: false
@@ -162,12 +162,12 @@ requirejs(["Quaternion", "Input", "InputGroup"], function (Quaternion, Input, In
       // default values of parameters etc.
       var dt = 0.005;
       var initialPoints = [[]];
-      var iters = 50; // number of iterations per refresh
+      var iters = 500; // number of iterations per refresh
       var updateInterval = 50; // time in ms per refresh
       var plot; // object to store the flot plot in.
 
       // scale of the plot (0-10);
-      var scale = 1;
+      var scale = .1;
 
       function getInitialPoints(random) {
         // get some random starting points.
