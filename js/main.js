@@ -160,9 +160,9 @@ requirejs(["Quaternion", "Input", "InputGroup"], function (Quaternion, Input, In
       var numSeries = 1;
 
       // default values of parameters etc.
-      var dt = 0.001;
+      var dt = 0.01;
       var initialPoints = [[]];
-      var iters = 100; // number of iterations per refresh
+      var iters = 50; // number of iterations per refresh
       var updateInterval = 50; // time in ms per refresh
       var plot; // object to store the flot plot in.
 
