@@ -13,7 +13,7 @@ requirejs(["Quaternion", "Input", "InputGroup"], function (Quaternion, Input, In
           alpha:
             {
               selector: "#alpha",    
-              init: 15.6,
+              init: 9.8,
               min: 0,
               max: 30,
               slider: true,
@@ -22,7 +22,7 @@ requirejs(["Quaternion", "Input", "InputGroup"], function (Quaternion, Input, In
           beta:
             {
               selector: "#beta",
-              init: 28,
+              init: 16,
               min: 0,
               max: 100,
               slider: true,
@@ -73,7 +73,7 @@ requirejs(["Quaternion", "Input", "InputGroup"], function (Quaternion, Input, In
       var zoomInput = new Input(
             {
               selector: "#zoom",
-              init: .1,
+              init: .06,
               min: 0.01,
               max: 1,
               slider: true,
@@ -158,7 +158,7 @@ requirejs(["Quaternion", "Input", "InputGroup"], function (Quaternion, Input, In
       var plot; // object to store the flot plot in.
 
       // scale of the plot (0-10);
-      var scale = .1;
+      var scale = .06;
 
       function getInitialPoints(random) {
         // get some random starting points.
