@@ -13,7 +13,7 @@ requirejs(["Quaternion", "Input", "InputGroup"], function (Quaternion, Input, In
           alpha:
             {
               selector: "#alpha",    
-              init: 15.6,
+              init: 9.8,
               min: 0,
               max: 30,
               slider: true,
@@ -22,16 +22,7 @@ requirejs(["Quaternion", "Input", "InputGroup"], function (Quaternion, Input, In
           beta:
             {
               selector: "#beta",
-              init: 1,
-              min: 0,
-              max: 5,
-              slider: true,
-              step: 0.1
-            },
-          epsilon:
-            {
-              selector: "#epsilon",
-              init: 28,
+              init: 16,
               min: 0,
               max: 100,
               slider: true,
@@ -82,11 +73,11 @@ requirejs(["Quaternion", "Input", "InputGroup"], function (Quaternion, Input, In
       var zoomInput = new Input(
             {
               selector: "#zoom",
-              init: 1,
-              min: 0.1,
-              max: 10,
+              init: .06,
+              min: 0.01,
+              max: 1,
               slider: true,
-              step: 0.1
+              step: 0.01
             });
 
       var updateInput = new Input(
@@ -110,18 +101,18 @@ requirejs(["Quaternion", "Input", "InputGroup"], function (Quaternion, Input, In
       var seriesLenInput = new Input(
           {
             selector: "#seriesLen",
-            init: 1000,
+            init: 10000,
             min: 1,
-            max: 2000,
+            max: 20000,
             slider: false
           });
 
       // the array of raw data for all the plot series
       var data = [[]];
       // maxiumum number of points in the series.
-      var totalPoints = 1000;
+      var totalPoints = 10000;
       // length of the axes on the graph.
-      var axisLength = 3;
+      var axisLength = 1;
       // true when running.
       var running = true;
       // true during mouse drag.
@@ -160,14 +151,14 @@ requirejs(["Quaternion", "Input", "InputGroup"], function (Quaternion, Input, In
       var numSeries = 1;
 
       // default values of parameters etc.
-      var dt = 0.01;
+      var dt = 0.001;
       var initialPoints = [[]];
-      var iters = 5; // number of iterations per refresh
+      var iters = 50; // number of iterations per refresh
       var updateInterval = 50; // time in ms per refresh
       var plot; // object to store the flot plot in.
 
       // scale of the plot (0-10);
-      var scale = 1;
+      var scale = .06;
 
       function getInitialPoints(random) {
         // get some random starting points.
@@ -202,9 +193,9 @@ requirejs(["Quaternion", "Input", "InputGroup"], function (Quaternion, Input, In
         }
         var next = [
           // integrate the lorenz equations.
-          prev[0] + dt * (parmVals.alpha * (prev[1] - prev[0] - (parmVals.m1*prev[0] - 0.5 * (parmVals.m0 - parmVals.m1) * (Math.abs(prev[0] + 1) - Math.abs(prev[0] - 1))))),
-          prev[1] + dt * (parmVals.beta * (prev[0] - prev[1] + prev[2]))
-          prev[2] + dt * (0 -parmVals.epsilon* prev[1])
+          prev[0] + dt * (parmVals.alpha * (prev[1] - prev[0] - (parmVals.m1*prev[0] + 0.5 * (parmVals.m0 - parmVals.m1) * (Math.abs(prev[0] + 1) - Math.abs(prev[0] - 1))))),
+          prev[1] + dt * (prev[0] - prev[1] + prev[2]),
+          prev[2] - dt * (parmVals.beta * prev[1])
           ];
         sData.push(next);
         data[series] = sData;
