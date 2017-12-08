@@ -55,7 +55,7 @@ requirejs(["Quaternion", "Input", "InputGroup"], function (Quaternion, Input, In
               selector: "#ranVary",
               init: 0,
               min: 0,
-              max: 50,
+              max: 1,
               slider: true,
               step: 0.1
             },
@@ -64,9 +64,9 @@ requirejs(["Quaternion", "Input", "InputGroup"], function (Quaternion, Input, In
               selector: "#ranSpread",
               init: 0,
               min: 0,
-              max: 10,
+              max: 1,
               slider: true,
-              step: 0.1
+              step: 0.001
             }
         });
 
